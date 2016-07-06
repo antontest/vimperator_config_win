@@ -1,0 +1,397 @@
+"3.13.1 (created: 2016/05/04 01:34:00)
+
+
+" prefs
+" ======================================================================
+echomsg "Loading..."
+autocmd VimperatorEnter .* pluginmanager update
+
+" Set map leader
+let mapleader = ","
+
+ ブラウザのタイトル
+ " ブラウザタイトルの変更
+ set titlestring=Firefox
+ " set titlestring=vimp
+ " notabs, nomenu,nobookmarks,nonavigation 
+ set toolbars=noaddons 
+ set noscrollbars
+ set status=input,location,position
+
+ " 検索語のハイライト
+ set hlsearch
+
+ "ビジュアルレベルを無効化
+ highlight Bell display:none;
+
+ " ヒントモードを英字にする
+ " set hintchars=ifjklasdhguonmerwc
+ " set hintchars=asdfjkl
+
+ " ヒントモードの英字は大文字に
+ hi Hint z-index:5000; font-size:14px; color:white; background-color:red;border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;
+
+"タブオープンやオープンで何を表示するか
+set complete=lsSt
+
+" Show completions as you type? '' waits for tab, 'auto' shows them immediately
+set wildoptions=''
+
+" Select the longest autocomplete match
+set wildmode='list:full'
+
+" Show a (n)umber on tabs, the (b)ottom scrollbar, and the (r)ight scrollbar
+set guioptions=nbrmT
+
+" Always show tab bar
+set showtabline=1
+
+" Don't beep
+set noerrorbells
+
+" Make Firefox run faster by using JIT
+set! javascript.options.jit.chrome=true
+
+" undo保持数
+set! browser.sessionstore.max_tabs_undo=10 
+
+" タブの閉じるボタン非表示
+set! browser.tabs.closeButtons=2
+
+" ページのアクセスキーを無効化
+set! ui.key.generalAccessKey=0
+
+" plugin開発用の設定
+set! javascript.options.strict=true
+set! javascript.options.showInConsole=true
+set! browser.dom.window.dump.enabled=true
+
+" options
+" ======================================================================
+" 検索エンジン指定
+set defsearch=google
+set suggestengines=google
+
+" :[tab]open の補完対象と順番
+set complete=bSl
+
+" maine_coon.js
+"set mainecoon=am
+
+source! /home/antonio/.vimperatorrc.local
+
+" !でcssの表示切り替え
+noremap <silent> ! :set invusermode<CR>
+
+set hintchars=asdfjkl
+set visualbell
+" set verbose=9
+set complete=slf
+" autocmd VimperatorEnter ".*" set complete+=D
+set editor="/usr/bin/vim"
+" set jsd
+
+" リンクのURIをステータスラインに表示
+set showstatuslinks=1
+
+" 新規ウィンドウの処理
+set popups=tab
+
+" ページロード時にテキストボックスにフォーカスするのを防ぐ
+set focuscontent
+
+" 詳細表示を7行に(最大15)
+set verbose=7
+
+" echoerr履歴表示件数
+set messages=100
+
+" Beep設定
+set visualbell
+hi Bell opacity: .5;
+
+" Elements of the status line
+set status=input,location,tabcount,position
+
+" Command line and search patterns history
+set history=10000
+
+" Show pattern matches as you type
+set incsearch
+
+
+" Hilight previous search pattern matches
+set hlsearch
+
+" Focus content after a page has loaded
+set focuscontent
+
+"==============================================================="
+"検索は大文字/小文字無視
+"==============================================================="
+set ignorecase smartcase
+
+" mappings
+" ======================================================================
+
+" Smart gi 
+noremap gi gi<End>
+
+" OSのキーバインドを再現 
+" noremap <C-a> <C-v><C-a>
+" noremap <C-c> <C-v><C-c>
+ 
+inoremap <C-a> <C-Esc><C-a><C-Esc>
+" inoremap <C-a> <C-v><C-a>
+" inoremap <C-c> <C-v><C-c>
+" inoremap <C-v> <C-v><C-v>
+" inoremap <C-x> <C-v><C-x>
+" inoremap <C-z> <C-v><C-z>
+" inoremap <C-Space> <C-v><C-Space>
+ 
+" cnoremap <C-a> <C-v><C-a>
+" cnoremap <C-c> <C-v><C-c>
+" cnoremap <C-v> <C-v><C-v>
+" cnoremap <C-x> <C-v><C-x>
+" cnoremap <C-z> <C-v><C-z>
+
+" M-x enters command mode
+noremap <A-x> :
+
+" Or use them to go to the absolute left/right of the document
+noremap <C-a> 0
+noremap <C-e> $
+
+" Dialog selection with d
+" map d :dialog<SPACE>
+
+" Kill the buffer with C-x k
+" noremap <C-x>k d
+noremap D d
+
+" scroll down
+noremap <C-Space> <C-d>
+noremap J <C-d>
+noremap K <C-u>
+
+noremap <A-i> <Esc>
+inoremap <A-i> <Esc>
+cnoremap <A-i> <Esc>
+
+" Copy
+noremap <C-c> i<C-c>
+
+" 用gi快速进入Insert模式时转入TEXTAREA模式
+" noremap gi gi<C-t>
+
+"j/kの移動量を7倍に
+nnoremap j 7j
+nnoremap k 7k
+
+"←/→でタブ移動
+" map <Left> <C-p>
+" map <Right> <C-n>
+
+" h/l や ← → でタブ移動
+noremap h <C-p>
+noremap l <C-n>
+
+"ロケーションバーにフォーカス
+map <C-l> <A-d>
+
+"Ctrl+rで再起動,Ctrl+hでヘルプ ,sで設定ファイル再読込
+map <C-r> :restart<CR>
+map ,s :so ~/_vimperatorrc<CR>
+
+" Alt+↑/↓でメニューの表示/非表示
+map <A-j> :set toolbars=tabs,menu,bookmarks,noaddons,navigation<CR>
+map <A-k> :set toolbars=tabs,nomenu,nobookmarks,noaddons,nonavigation<CR>
+
+" . でbuffer
+map . :buffer<Space>
+" ! でページのCSSをon/off
+map ! :set invum<CR>
+" ブックマークに追加
+map B :bmark<Space>-keyword=
+" U で最近閉じたタブ表示
+" qmark g http://gfsoso.99lb.net/
+map U :u<Space>
+map S :stop<CR>
+
+map qm :qmark<Space>
+map qa :qmarks<CR>
+qmark e https://mail.163.com
+qmark D http://share.xfsub.com:88/
+qmark k http://bbs.kafan.cn
+qmark g https://www.google.com/?gws_rd=ssl
+qmark G http://github.com
+qmark o http://www.oschina.net/
+qmark w https://note.wiz.cn/login
+qmark x http://lixian.xunlei.com/task.html
+qmark Z http://www.zimuzu.tv/
+qmark r http://news.realsil.com.cn/
+
+" move tabs
+map <C-Left> :tabm -1<CR>
+map <C-Right> :tabm +1<CR>
+
+" ,bにてブックマーク検索
+com! -complete=bookmark -nargs=+ ob :o <args>
+com! -complete=history -nargs=+ oh :o <args>
+map ,b :ob
+map ,h :oh
+
+" gobではてブできるよ
+qmark b
+javascript:(function(){var%20d=(new%20Date);var%20s=document.createElement('script');s.charset='UTF-8';s.src='http://b.hatena.ne.jp/js/Hatena/Bookmark/let.js?'+d.getFullYear()+d.getMonth()+d.getDate();(document.getElementsByTagName('head')[0]||document.body).appendChild(s);})();
+
+" direct_bookmark.js
+" let g:direct_sbm_use_services_by_tag = "h"
+" let g:direct_sbm_use_services_by_post = "h"
+" let g:direct_sbm_is_normalize = "false"
+" let g:direct_sbm_is_use_migemo = "true"
+" let g:direct_sbm_echo_type = "multiline"
+
+" migemo_hint.js {{{
+" set hintmatching=custom
+" }}}
+
+
+" ==VimperatorColorScheme==
+" name: Sweets based on 'sweets_snaka'
+" ==/VimperatorColorScheme==
+
+hi Hint font-family: monospace; font-size: 15px; font-weight: normal; color:lightyellow; background-color: black; border-color: ButtonShadow; border-width:0px; border-style: solid; padding: 0px 5px 0px 5px; text-transform: uppercase;
+hi HintElem background-color: pink; color: black;
+hi HintActive background-color: hotpink; color: white;
+
+" 影(重かったらコメントアウトねっ！)
+hi -append Hint background-color: rgba(28, 28, 28, 0.7); border: 1px solid #1c1c1c; -moz-border-radius: 4px; -moz-box-shadow: 0px 0px 1px black; text-shadow: 1px 1px 2px black;
+hi -append HintElem text-decoration: none; -moz-border-radius: 4px; -moz-box-shadow: 0 0 2px #0c0c0c;
+hi -append HintActive text-decoration: none; -moz-border-radius: 4px; -moz-box-shadow: 0 0 2px #0c0c0c;
+
+hi StatusLine color: CornflowerBlue; background: #000; font-weight: normal; font-size: 12pt;
+hi StatusLineBroken color: black; background: #ffa0a0; font-weight: normal; font-size: 12pt;
+hi StatusLineExtended color: black; background: #a0ffa0; font-weight: normal; font-size: 12pt;
+hi StatusLineSecure color: black; background: #a0a0ff; font-weight: normal; font-size: 12pt;
+
+hi Normal color: LightYellow; background: Black; font-size: 12pt; opacity: 0.7;
+hi CmdLine color: LightYellow; background: Black; font-size: 14pt;
+hi InfoMsg color: LightYellow; background: Black; font-size: 12pt;
+hi ModeMsg color: LightYellow; background: Black; font-size: 12pt;
+hi MoreMsg color: LimeGreen; background: Black;
+hi LineNr color: DeepPink; background: Black; font-size: 12pt;
+hi Question color: Yellow; background: Black; font-size: 12pt;
+hi WarningMsg color: DeepPink; background: Black; font-size: 12pt;
+hi ErrorMsg color: white; background: red; font-size: 12pt;
+hi NonText background: #000;
+hi Null color: CornflowerBlue;
+hi Tag color: CornflowerBlue;
+hi Number color: CornflowerBlue;
+
+hi CompTitle background: DarkOrchid;
+hi CompTitle>* color: white; border-bottom: 1px solid #3c3c3f; padding: 1px
+0.5ex; text-shadow: 1px 1px 0px #0c0c0c;
+hi CompItem[selected] color: cyan; background: #333;
+hi CompDesc color: Pink;
+
+hi Title color: white;
+hi Indicator color: DodgerBlue;
+hi String color: Orchid;
+hi Number color: Orchid;
+hi Object color: Khaki;
+hi Function color: SkyBlue;
+hi URL color: LightGreen;
+
+" load libly
+source ~/.vimperator/plugin/_libly.js
+
+" Colorscheme
+" colorscheme molokai
+
+" Ctrl-F8 to toggle status bar
+map <silent> <C-F8> :js toggle_bottombar()<CR>
+map <silent> <C-F9> :js toggle_navbar()<CR>
+
+" Toggle nav bar
+:js << EOF
+function toggle_navbar() {
+    if (options['toolbars'].contains('nonavigation')) {
+        options['toolbars'] = 'navigation';
+    } else {
+        options['toolbars'] = 'nonavigation';
+    }
+}
+EOF
+
+" Toggle status bar
+:js << EOF
+function toggle_bottombar() {
+    var bb = document.getElementById('liberator-bottombar');
+    if (!bb)
+        return;
+    bb.style.height = (bb.style.height == '') ? '0px' : '';
+    bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
+}
+EOF
+
+" JS関連は別ファイルに(.vimperatorrc.js)
+" source ~/.vimperatorrc.js
+
+" コマンドモード時に強制的にIMEをオフに
+:style -name commandline-ime chrome://* #liberator-commandline-command input
+{ime-mode: inactive;}
+
+" colorscheme
+" ======================================================================
+" colorscheme BrewBlue
+style -name tab-style-fix chrome://* <<EOM
+.tab-text-shadow,
+    .tabs-newtab-button {
+          display: none !important;
+    }
+EOM
+
+
+" Adds RSS icon on the bottom status bar.
+" From: http://blog.thetoast.net/2009/02/vimp-update.html
+javascript <<EOF
+(function(){
+ var feedPanel = document.createElement("statusbarpanel");
+ feedPanel.setAttribute("id", "feed-panel-clone");
+ feedPanel.appendChild(document.getElementById("feed-button"));
+ feedPanel.firstChild.setAttribute("style", "padding: 0;
+         max-height: 16px;");
+ document.getElementById("status-bar").insertBefore(feedPanel,
+         document.getElementById("security-button"));
+ })();
+
+EOF
+
+" Make bar yellow when focused.
+" From: http://www.reddit.com/r/linux/comments/99d55/i_could_use_a_little_vimperator_help_also/
+javascript <<EOF
+(function() {
+ var inputElement =
+ document.getElementById('liberator-commandline-command');
+ function swapBGColor(event) {
+ inputElement.style.backgroundColor = event.type
+ == "focus" ? "black" : "";
+ }
+ inputElement.addEventListener('focus',
+         swapBGColor, false);
+ inputElement.addEventListener('blur',
+         swapBGColor,
+         false);
+ })();
+EOF
+
+" statusline {{{
+    :set statuslinetoolbars=feed-button,firebug-button,greasemonkey-tbb,stylish-toolbar-button
+" }}}
+
+" vim: set ft=vimperator:
+" 読み込みおわったらメッセージ
+
+echomsg "vimperator: Welcome back."
+
